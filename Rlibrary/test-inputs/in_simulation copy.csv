@@ -1,0 +1,7 @@
+horizon_years,50
+timestep_days,8
+horizon_prtn_years,50
+timestep_prtn_days,20
+MCiter,2
+nCPU,4
+save_trace_files,0

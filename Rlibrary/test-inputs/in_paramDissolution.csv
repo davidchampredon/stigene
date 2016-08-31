@@ -1,0 +1,7 @@
+dissolutionMaxRate, 0.03
+risk_a0, 0.2
+risk_aa, 0.6
+duration_a, 0.1
+duration_b, 0.7
+duration_c, 0.2
+dissolveSpouse, 0.10

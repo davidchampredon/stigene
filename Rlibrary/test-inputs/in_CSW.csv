@@ -1,0 +1,7 @@
+_CSW_maxRecruitmentRate,0.005
+_CSW_recruitment_saturPrm_1,800
+_CSW_recruitment_saturPrm_2,0.0005
+_CSW_recruitment_ageMin,15
+_CSW_recruitment_ageMax,45
+_CSW_cessationRate,0.05
+_CSW_ageMax,55

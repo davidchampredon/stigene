@@ -1,0 +1,8 @@
+ageDistrib_1980.csv,ageDistrib_1990.csv,ageDistrib_2000.csv,ageDistrib_2010.csv
+,ageGapDist_phase2.csv,ageGapDist_phase4.csv,ageGapDist_phase6.csv
+,singleRatio_phase2.csv,singleRatio_phase4.csv,singleRatio_phase6.csv
+,age1sex_f_phase2.csv,age1sex_f_phase4.csv,age1sex_f_phase6.csv
+,age1sex_m_phase2.csv,age1sex_m_phase4.csv,age1sex_m_phase6.csv
+,,HIV_prev_age_f_phase5.csv,HIV_prev_age_f_phase6.csv
+,,,lftNP_f_phase6.csv
+,,,lftNP_m_phase6.csv

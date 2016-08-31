@@ -1,0 +1,9 @@
+birthRate,0.030
+infantMortalityRate,0.05
+childMortalityRate,0.01
+death_Weibull_shape,2.5
+death_Weibull_scale,0.01
+death_Weibull_shape_hiv,12.98
+death_Weibull_scale_hiv,0.05
+_maxPregnantAge,40
+_probaPregnantPerSexAct,0.01

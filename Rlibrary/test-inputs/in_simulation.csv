@@ -1,0 +1,5 @@
+horizon_years,20
+timestep_days,7
+horizon_prtn_years,50
+timestep_prtn_days,20
+save_trace_files,0

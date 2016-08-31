@@ -1,0 +1,5 @@
+_stiname,HIV
+_type,treatment_mass
+_schedule_0,0.01
+_schedule_1,999
+_annCvgRate,0.5

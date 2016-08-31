@@ -1,0 +1,12 @@
+dissolution_MaxRate,0.4
+dissolution_spouse,0.06
+dissolution_RiskGroup_1,0.7
+dissolution_duration_1,0.324
+dissolution_duration_2,0.6898
+dissolution_duration_3,0.15
+dissolution_age_1,75.9
+dissolution_age_2,0.1
+dissolution_age_probMin,0.7
+dissolution_PartnerDeficit_1,0.3
+dissolution_PartnerDeficit_2,2.1
+dissolution_STI_symptom,0.54

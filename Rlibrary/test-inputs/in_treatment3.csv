@@ -1,0 +1,5 @@
+_stiname,Tp
+_type,vaccination_mass
+_schedule_0, 1.0
+_schedule_1, 2.25
+_annCvgRate, 0.75

@@ -1,0 +1,5 @@
+_stiname,Tp
+_type,treatment_mass
+_schedule_0, 999.0
+_schedule_1, 999.25
+_annCvgRate, 0.75

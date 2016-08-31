@@ -1,0 +1,82 @@
+HIV_peakTime_weeks, 6.0
+HIV_shape_acute, 2.0
+HIV_var_acute_weeks, 2.0
+HIV_frac_chronic_acute, 0.01
+HIV_chronic_duration_yrs, 7.0
+HIV_chronic_growth, 0.4
+HIV_aids_duration_yrs, 1.5
+HIV_maxProba_sexTransm, 0.30
+HIV_reduc_probaTrans_loRisk, 0.10
+CT_incubation_mean_weeks, 3.0
+CT_incubation_var_weeks, 1.0
+CT_infectious_mean_weeks, 16.0
+CT_infectious_var_weeks, 5.0
+CT_maxProba_sexTransm, 0.50
+CT_reduc_probaTrans_loRisk, 0.90 
+birthRate, 0.035
+infantMortalityRate, 0.05
+childMortalityRate, 0.12
+deathNatural, 0.002
+deathNaturalIncrOld,0.010
+deathHIV, 0.00
+deathHIVAIDS,0.15
+dissolutionMaxRate, 0.03
+risk_a0, 0.2
+risk_aa, 0.6
+risk_rmax_SHOULDNT_BE_IN_THIS_FILE, 2
+duration_a, 0.1
+duration_b, 0.7
+duration_c, 0.2
+dissolveSpouse, 0.10
+maxFormationRate, 1.3
+mean_age_f, 20.0
+variance_age_f, 3.0
+mean_gap, 5.0
+variance_gap, 1.2
+correl_age_gap, -0.3
+alpha, 0.01
+deficit_q, 2.00
+risk_a0, 0.15
+risk_a1, 0.09
+maxSexActRateMale, 365
+maxSexActRateFemale, 500
+prefSexWithSpouse, 1.2
+reduceSexActRateAge1, 25
+reduceSexActRateAge2, 29
+reduceSexActRateAge3, 4
+reduceSexActRateRiskGroupEpsilon,0.40 
+reduceSexActRatesymptomSTImale, 0.10
+reduceSexActRatesymptomSTIfemale, 0.40
+reduceSexActRateAIDSsigma, 0.5
+reduceSexActRateAIDSq, 1.0
+reduceSexActRateNpartner,2.0
+prefSexCSW1, 0.5
+prefSexCSW2, 1.0
+probaSexCSW1, 0.5
+probaSexCSW2, 1.0
+reductionCSWcost, 0.10
+meanAgeF, 16.0
+varAgeF, 30.0
+meanGap, 5.0
+varGap, 3.0
+k1, 1.0
+k2, 0.05
+meanDiffAgeGap, 5.0
+varDiffAgeGap, 30.0
+PARAMETER,VALUE
+size, 1000
+proportionFemales, 0.50
+proportionCSW, 0.03
+maxConcPartners, 5
+minSexAge, 15
+maxSexAge, 60
+minCSWage,15
+maxCSWage,35
+proportionHiRisk, 0.1
+probaPartnerSpouse, 0.09
+probaDivorce, 0.05
+probaWidow,0.15
+maxRiskGroup, 3
+maxAge, 80.0
+horizon_years, 50.0
+timestep_days, 180.0 

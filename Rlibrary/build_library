@@ -1,0 +1,9 @@
+rm -rf stigene*
+rm -rf ./lib
+Rscript setup_library.R
+cp Makevars stigene/src 
+R CMD build stigene
+R CMD check stigene
+mkdir ./lib
+R CMD INSTALL -l ./lib stigene
+echo run "Rscript test_stigene_library.R" to check all went well

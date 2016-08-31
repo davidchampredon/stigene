@@ -1,0 +1,8 @@
+meanAgeF, 16.0
+varAgeF, 30.0
+meanGap, 5.0
+varGap, 3.0
+k1, 1.0
+k2, 0.05
+meanDiffAgeGap, 5.0
+varDiffAgeGap, 30.0

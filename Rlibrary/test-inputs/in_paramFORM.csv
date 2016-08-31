@@ -1,0 +1,15 @@
+formation_MaxRate,3.1
+formation_age_fullstart,19
+formation_age_pivot,43
+formation_age_shape,0.27
+formation_age_fmin,0.1
+formation_agegap_mean,10
+_formation_agegap_shape_1,-7
+_formation_agegap_shape_2,5
+_formation_agegap_shape_3,2
+formation_agegap_fmin,0.268
+formation_RiskGroup_1,0.3
+formation_RiskGroup_2,1.00
+formation_PartnDeficit_1,0.405
+formation_STIsymptom_f,0.82
+formation_STIsymptom_m,0.82

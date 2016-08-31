@@ -1,0 +1,6 @@
+mean_age_f, 20.0
+variance_age_f, 3.0
+mean_gap, 5.0
+variance_gap, 1.2
+correl_age_gap, -0.3
+alpha, 0.01

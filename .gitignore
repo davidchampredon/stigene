@@ -1,3 +1,9 @@
+Rlibrary/lib/*
+Rlibrary/stigene*
+
+*pdf
+
+
 # Compiled Object files
 *.slo
 *.lo

@@ -1,0 +1,15 @@
+founder_size,500
+founder_femprop,0.5
+founder_cswprop,0.01
+maxConcPartners,5
+minSexAge,12
+maxSexAge,60
+minCSWage,15
+maxCSWage,45
+proportionHiRisk,0.2
+probaPartnerSpouse,0.09
+probaDivorce,0.05
+probaWidow,0.15
+maxRiskGroup,2
+maxAge,80
+proportionCircumcised,0.0001
