@@ -139,14 +139,17 @@ void write_headers_if_emptyFile(string filename, string headers);
 
 template <class T> void displayVector(vector<T> v)
 {
-	cout << endl<< "(size="<<v.size()<<")"<<endl<<"[";
-	for (int i=0; i<v.size()-1; i++) 
-	{
-		cout << v[i] << "; ";
-		if ((i+1)%10==0) cout<<endl;
-	}
-	cout << v[v.size()-1];
-	cout<< "]" << endl;	
+    if(v.size()==0) cout<< endl<<"empty vector"<<endl;
+    else{
+        cout << endl<< "(size="<<v.size()<<")"<<endl<<"[";
+        for (int i=0; i<v.size()-1; i++)
+        {
+            cout << v[i] << "; ";
+            if ((i+1)%10==0) cout<<endl;
+        }
+        cout << v[v.size()-1];
+        cout<< "]" << endl;
+    }
 }
 
 

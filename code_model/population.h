@@ -243,7 +243,7 @@ public:
 	// =====================
 	
 	
-	Individual		getIndividual(unsigned long uid) {return _individual[uid];}
+	Individual		get_individual(unsigned long uid) {return _individual[uid];}
 	unsigned long	get_nSTImodelled() {return _nSTImodelled;}
 	double			get_ageSexMin() {return _ageSexMin;}
 	dcMatrix		get_partnershipsMatrix() { return _partnershipsMatrix;}
@@ -606,6 +606,7 @@ public:
 	unsigned long			census_pregnant(int riskgroup);		// total number of pregnant females of given risk group
 	vector<unsigned long>	census_pregnant_UID();	// UID of all pregnant women
 
+    vector<unsigned long>   census_STIinfected_UID(STIname stiname);
 	
 	//DEBUG ----
 	void census_nLifeSexPrtnrDistrib_todelete(Gender g);
@@ -837,6 +838,7 @@ public:
     void    update_genomes_clear();
     
     vector<string> get_population_genomes(int sti_pos);
+    vector<string> get_population_genomes(STIname stiname);
     
     
 	// ===============================

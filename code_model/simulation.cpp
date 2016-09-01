@@ -71,7 +71,7 @@ vector<bool> Simulation::MTCT(unsigned long uid)
 	/// (vector size = number of STIs modelled)
 	/// ('true' = transmission to child)
 	
-	Individual I = _population.getIndividual(uid);
+	Individual I = _population.get_individual(uid);
 	
 	// MTCT at previous time step
 	vector<bool> prev_mtct = I.get_STI_MTCT();
@@ -136,7 +136,7 @@ void Simulation::update_pregnancies(double timestep)
 		
 		for (int i=0; i<uid_pot_preg.size(); i++)
 		{
-			int nsex = _population.getIndividual(uid_pot_preg[i]).get_nSexActs_period();    //.nSexActType1or2(); <--- TO DO: WARNING condom not taken into account here!!!
+			int nsex = _population.get_individual(uid_pot_preg[i]).get_nSexActs_period();    //.nSexActType1or2(); <--- TO DO: WARNING condom not taken into account here!!!
 			
 			double proba_pregnant = 1 - pow(1 - ppsex, nsex);
 			
@@ -154,8 +154,8 @@ void Simulation::update_pregnancies(double timestep)
 	
 	for (int i=0; i<uid_preg.size(); i++)
 	{
-		double gest = _population.getIndividual(uid_preg[i]).get_gestationDuration();
-		double age_mother = _population.getIndividual(uid_preg[i]).get_age();
+		double gest = _population.get_individual(uid_preg[i]).get_gestationDuration();
+		double age_mother = _population.get_individual(uid_preg[i]).get_age();
 		
 		// Mother-to-child STI transmission.
 		// Updated at each time step but
@@ -849,7 +849,7 @@ void Simulation::activate_intervention(int i)
 		
 		// == Filter who is targeted by intervention ==
 		
-		Individual indiv = _population.getIndividual(uid);
+		Individual indiv = _population.get_individual(uid);
 		
 		if(indiv.isAlive()){
 			
@@ -949,9 +949,9 @@ void Simulation::cure_indiv(unsigned long uid, STIname stiname)
 	/// Cure and individual from a given STI
 	/// (must be treated beforehand and Adherence>0.8)
 	
-	stopif(!_population.getIndividual(uid).STI_treated(stiname),
+	stopif(!_population.get_individual(uid).STI_treated(stiname),
 		   "Cannot cure without treatment!");
-	stopif(!(_population.getIndividual(uid).get_STIduration(stiname)>0),
+	stopif(!(_population.get_individual(uid).get_STIduration(stiname)>0),
 		   "Cannot cure inexistent STI!");
 	
 	// Cure only if:
@@ -964,10 +964,10 @@ void Simulation::cure_indiv(unsigned long uid, STIname stiname)
 	int i_sti = positionSTIinVector(stiname, _population.get_STI());
 	double optim_duration = _population.get_STI()[i_sti].get_optimalTreatmentDuration();
 	
-	if (_population.getIndividual(uid).get_STItreatDuration(stiname) > optim_duration &&
-		_population.getIndividual(uid).get_STItreatTMS(stiname)==1)
+	if (_population.get_individual(uid).get_STItreatDuration(stiname) > optim_duration &&
+		_population.get_individual(uid).get_STItreatTMS(stiname)==1)
 	{
-		double A = _population.getIndividual(uid).get_STItreatAdherence(stiname);
+		double A = _population.get_individual(uid).get_STItreatAdherence(stiname);
 		if(A>0.8) {
 			_population.cure_indiv(uid, stiname);
 			//DEBUG
@@ -985,7 +985,7 @@ void Simulation::update_cure(STIname sti)
 	int sti_i = positionSTIinVector(sti, _population.get_STI());
 	
 	for (unsigned long uid=0; uid<_population.get_size(); uid++){
-		Individual tmp = _population.getIndividual(uid);
+		Individual tmp = _population.get_individual(uid);
 		if (tmp.isAlive() &&
 			(tmp.get_STItreatDuration()[sti_i]>0) &&
 			tmp.get_STIduration()[sti_i]>0) cure_indiv(uid,sti);
@@ -1017,7 +1017,7 @@ void Simulation::update_vacc(STIname stiname){
 	
 	for (unsigned long uid=0; uid<_population.get_size(); uid++){
 		
-		Individual tmp = _population.getIndividual(uid);
+		Individual tmp = _population.get_individual(uid);
 		
 		if (tmp.isAlive() &&
 			tmp.get_STI_vacc()[sti_i]){

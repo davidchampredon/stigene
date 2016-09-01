@@ -56,7 +56,6 @@ void Population::STI_setAllParameters(string filename)
 		// Construct each STI (infectious period, proba symptomatic, etc)
 		// from 'filename'
 		STI tmp(stiName[s], filename);
-        cout << "DEBUG: " << filename <<endl;
 		_STI[s] = tmp;
 	}
 	_secondary_cases.resize(_nSTImodelled);
@@ -2299,6 +2298,22 @@ vector<unsigned long> Population::census_pregnant_UID()
 }
 
 
+vector<unsigned long> Population::census_STIinfected_UID(STIname stiname)
+{
+    /// Returns UID of all individuals infected with a given STI
+    
+    vector<unsigned long> res;
+    
+    for (int i=0; i<_size; i++){
+        if (_individual[i].isAlive() &&
+            _individual[i].get_STIduration(stiname)>0  ){
+            res.push_back(_individual[i].get_UID());
+        }
+    }
+    return res;
+}
+
+
 
 /* ****************************************** */
 /* ************** ANALYTICS ***************** */
@@ -3400,6 +3415,21 @@ vector<string> Population::get_population_genomes(int sti_pos){
     return g;
 }
 
+vector<string> Population::get_population_genomes(STIname stiname){
+    
+    vector<string> g;
+    int sti_pos = positionSTIinVector(stiname, _STI);
+    // loop through all infected individuals:
+    for(unsigned long i=0; i<_size; i++){
+        if (_individual[i].isAlive() &&
+            _individual[i].get_STIduration(stiname)>0){
+            g.push_back( _individual[i].get_genome(sti_pos) );
+        }
+    }
+    return g;
+}
+
+
 
 
 /* **************************************************
@@ -3966,12 +3996,12 @@ vector<unsigned long> Population::pregnantPotentialFemales()
 	
 	for(unsigned long i=0; i<_size; i++)
 	{
-		if(getIndividual(i).isAlive() &&
-		   getIndividual(i).get_gender()==female &&
-		   //getIndividual(i).nSexActType1or2()>0 && // <-- TO DO: should be included but sex act type not recorded in females. Should retrieve all males partners and test nSexActType1or2>0 on males. For now keep it like that bc low  condom use, so very likely at least one sex act w/o condom
-		   (!getIndividual(i).get_isPregnant()) &&
-		   getIndividual(i).get_age()<_maxPregnantAge){
-			res.push_back(getIndividual(i).get_UID());
+		if(get_individual(i).isAlive() &&
+		   get_individual(i).get_gender()==female &&
+		   //get_individual(i).nSexActType1or2()>0 && // <-- TO DO: should be included but sex act type not recorded in females. Should retrieve all males partners and test nSexActType1or2>0 on males. For now keep it like that bc low  condom use, so very likely at least one sex act w/o condom
+		   (!get_individual(i).get_isPregnant()) &&
+		   get_individual(i).get_age()<_maxPregnantAge){
+			res.push_back(get_individual(i).get_UID());
 		}
 	}
 	
@@ -5905,7 +5935,7 @@ void Population::cure_indiv(unsigned long uid, STIname sti)
 	_individual[uid].set_STIduration(sti, 0.00);
 	_individual[uid].set_STIsymptom(sti, false);
 	_individual[uid].set_STItreatDuration(0.00, sti);
-	_individual[uid].clear_STI_secondary_cases(sti);
+	//_individual[uid].clear_STI_secondary_cases(sti);
 }
 
 

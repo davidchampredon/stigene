@@ -160,7 +160,6 @@ public:
 	
 	
 	
-	
 	// === Get Functions ===
 	
 	bool						isAlive() {return _isAlive;}
@@ -252,7 +251,7 @@ public:
 	vector<bool>		get_STI_MTCT() {return _STI_MTCT;}
 
 	
-	vector<unsigned long>		get_STI_secondary_cases(STIname stiname);
+	vector<unsigned long> get_STI_secondary_cases(STIname stiname);
     
     // -- Genetics --
     string      get_genome(int i) {return _STI[i].get_genome();}
@@ -330,7 +329,6 @@ public:
 	void		init_STIsusceptFactor();
 	void		set_STIsusceptFactor(int i, double x) {_STIsusceptFactor[i]=x;}
 	
-	// OLD VERSION USED IN OLD CALIBRATION FUNCTION :void		set_STI(vector<STI> s) {_STI = s;}
 	void		set_STI(vector<STI> s) {_STI = s; _STIduration.resize(s.size(),0.0);}
 	
 	void		set_STIduration(int sti_index, double duration);

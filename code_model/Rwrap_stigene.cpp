@@ -207,12 +207,38 @@ List stiagent_runsim(List params) {
 	
 	// Genomes
 	Rcpp::List genomes;
+	Rcpp::List genomes_UID;
 	
-	// TO DO: make a loop and retrieveSTI name...
-	vector<string> g_HIV = Sobj.get_population().get_population_genomes(0);
-	vector<string> g_Tp  = Sobj.get_population().get_population_genomes(1);
-	genomes.push_back(g_HIV);
-	genomes.push_back(g_Tp);
+	for(int i=0; i<nSTI;i++){
+		STIname stiname             = POP.get_STI()[i].get_name();
+		vector<string> g	        = POP.get_population_genomes(stiname);
+		vector<unsigned long> g_uid = POP.census_STIinfected_UID(stiname);
+		genomes.push_back(g);
+		genomes_UID.push_back(g_uid);
+	}
+	genomes.attr("names")     = stiname_str;
+	genomes_UID.attr("names") = stiname_str;
+	
+	
+	// Secondary cases
+	
+	Rcpp::List seccases_sti;
+	
+	for(int s=0; s<nSTI;s++){
+		STIname stiname = POP.get_STI()[s].get_name();
+		vector<string> uidvec;
+		Rcpp::List seccases_indiv;
+		for(unsigned long i=0; i < POP.get_size(); i++){
+			vector<unsigned long> seccases_uid = POP.get_individual(i).get_STI_secondary_cases(stiname);
+			seccases_indiv.push_back(seccases_uid);
+			uidvec.push_back(to_string(POP.get_individual(i).get_UID()));
+		}
+		seccases_indiv.attr("names") = uidvec;
+		seccases_sti.push_back(seccases_indiv);
+	}
+	seccases_sti.attr("names") = stiname_str;
+
+	
 	
 	// =========================================================================
 	// =========================================================================
@@ -228,7 +254,9 @@ List stiagent_runsim(List params) {
 						Named("population") = pop_last_R,
 						Named("df_interv") = df_interv_R,
 						Named("seed") = MC_id,
-						Named("genomes") = genomes
+						Named("genomes") = genomes,
+						Named("genomes_UID") = genomes_UID,
+						Named("sec_cases") = seccases_sti
 						);
 }
 

@@ -136,12 +136,25 @@ int main(int argc, const char * argv[])
 				
 				dcDataFrame df = Sobj.get_df_sim();
 				dcDataFrame export_pop = Sobj.get_population().export_to_dataframe();
-				df.display();
+				//df.display();
                 
-                vector<string> g = Sobj.get_population().get_population_genomes(HIV);
+                Population POP = Sobj.get_population();
+                STIname sn = POP.get_STI()[0].get_name();
                 
+                vector<string> g = POP.get_population_genomes(sn);
+                vector<unsigned long> g_uid = POP.census_STIinfected_UID(sn);
                 displayVector(g);
+                displayVector(g_uid);
                 cout << " dist = " << distance_genomes(g[0], g[1]);
+                
+                vector< vector<unsigned long> > z;
+                STIname stiname = POP.get_STI()[0].get_name();
+                for(unsigned long i=0; i < POP.get_size(); i++){
+                    vector<unsigned long> seccases_uid = POP.get_individual(i).get_STI_secondary_cases(stiname);
+                    unsigned long tmp = POP.get_individual(i).get_UID();
+                    z.push_back(seccases_uid);
+                }
+                displayVector(z);
 			}
 		}
 	} // ---- end of !doTest -----
