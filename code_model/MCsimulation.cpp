@@ -270,12 +270,14 @@ Simulation	runSimulation_one_obj(Population P_init,
 	// Job and MC trial when 2 simulations are run
 	// (this is what we want, for example comparing 2
 	// intervention scenario with the _same_ seed)
-	force_seed_reset(mc_id);
+    cout << "Pre-run for partneships formation...";
+    force_seed_reset(mc_id);
 	S.runAllEvents_horizon_obj(doSex,
 							   logIndivInfo,
 							   traceNetwork_prtn,
 							   displayProgress_prtn);
-	
+    cout << " done."<<endl;
+    
 	// Reset to original parameters
 	S.set_horizon(horizon);
 	S.set_timeStep(timestep);

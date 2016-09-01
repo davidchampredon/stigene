@@ -4126,9 +4126,12 @@ void Population::STI_transmission_indiv(STIname stiname,
 	
 	// "uid_s" acquires the STI:
 	STI_acquire(stiname, uid_s, timeStep);
+    
 	// update list of secondary cases for "uid_inf":
 	_individual[uid_inf].add_STI_secondary_cases(stiname, uid_s);
 	
+    _individual[uid_s].add_time_STI_acquisition(_simulationTime,stiname);
+    
     // transmission of genetic material:
     _individual[uid_s].set_genome(_individual[uid_inf].get_genome(stiname), stiname);
     

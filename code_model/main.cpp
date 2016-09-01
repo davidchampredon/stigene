@@ -94,8 +94,8 @@ int main(int argc, const char * argv[])
 		// === Run simulation ===
 		// ======================	
 		
-		double horizon	= getParameterFromFile("horizon_years", _DIR_IN + "in_simulation.csv");
-		double timeStep	= 5.0/365.0; //getParameterFromFile("timestep_days", _DIR_IN + "in_simulation.csv")/365.0;
+        double horizon	= 5.0; getParameterFromFile("horizon_years", _DIR_IN + "in_simulation.csv");
+		double timeStep	= 2.0/365.0; //getParameterFromFile("timestep_days", _DIR_IN + "in_simulation.csv")/365.0;
 		
 		
 		if (doSingleRun)

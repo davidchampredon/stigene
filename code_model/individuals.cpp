@@ -83,7 +83,6 @@ Individual::Individual(unsigned long uid, Gender g, double age, int maxSexPartne
 	
 	STI_initializeAll(templateSTI);
 	
-	// Initialize durations of infections
 	int nSTI = templateSTI.size() ;
 	
 	
@@ -551,6 +550,8 @@ void Individual::STI_initializeAll(vector<STI> STItemplate)
 	// Resize the vector holding the vectors of secondary cases
 	// (one vector for each STI):
 	_STI_secondary_cases.resize(n);
+    
+    _time_STI_acquisition.resize(n);
 	
 	// Initialize (to none) STI treatments
 	
@@ -652,6 +653,12 @@ void Individual::STI_resetAllDurations()
 	}
 }
 
+
+void Individual::add_time_STI_acquisition(double t, STIname stiname){
+    
+    int pos = positionSTIinVector(stiname, _STI);
+    _time_STI_acquisition[pos].push_back(t);
+}
 
 void Individual::increaseSTIdurations(double prd)
 {

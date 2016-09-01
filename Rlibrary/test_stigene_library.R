@@ -7,6 +7,7 @@
 
 library(network)
 library(ggplot2)
+library(plyr)
 library(stigene,lib.loc = "./lib")
 
 t0 <- Sys.time()
@@ -35,13 +36,15 @@ x <- stiagent_runsim(params = list(folder_inputs   = folder_inputs,
 								   displayProgress = 11)
                      )
 
-par(mfrow=c(2,2))
+par(mfrow=c(2,3))
 with(x$df_sim, 
 	 plot(time, nAlive, typ='l'))
 with(x$df_sim, 
 	 plot(time, nSp, typ='l'))
 with(x$df_sim, 
 	 plot(time, HIV, typ='l'))
+with(x$df_sim, 
+	 plot(time, Tp, typ='l'))
 with(x$df_sim, 
 	 plot(time, nNewBorn, typ='l'))
 
@@ -97,18 +100,49 @@ plot(net,
 	 arrowhead.cex=0.5)
 
 
+# infection (acquisition) times
+acq <- x$acquisition_times
+acq$Tp
+
+infectee <- vector()
+acqTime <- vector()
+sti <- vector()
+cnt <- 1
+nsti <- length(acq)
+for(s in 1:nsti){
+	tmp <- acq[[s]]
+	for(i in 1:length(tmp)){
+		ns <- length(tmp[i][[1]])
+		if(ns>0){
+			for(j in 1:ns){
+				infectee[cnt] <- names(tmp[i])
+				acqTime[cnt] <- tmp[i][[1]][j]
+				sti[cnt]      <- names(acq)[s]	
+				cnt <- cnt+1
+			}
+		}
+	}
+}
+acqTimes <- data.frame(sti, infectee=as.character(infectee), acqTime = as.numeric(acqTime))
+
+
+# Merge infector, infectee with acquisition times:
+chain.transm <- join(WIW,acqTimes, by = c('infectee','sti'))
+
+chain.transm$round.acqTime <- round(chain.transm$acqTime/5,2)*5
+
+z <- ddply(chain.transm,c('round.acqTime','sti'),summarize, inc=length(infectee) )
+g <- ggplot(z) + geom_step(aes(x=round.acqTime, y=inc, colour=sti)) #+geom_point()
+g <- g + geom_line(data = as.data.frame(x$df_sim), aes(x=time, y=Tp))
+plot(g)
+
 
 # Genetic information:
 g <- x$genomes
 guid <- x$genomes_UID
 
 
+# --------------------------------------------------------------------------
+# --------------------------------------------------------------------------
 t1 <- Sys.time()
 message(paste("time elapsed:",round(t1-t0,1),"sec"))
-
-# check if everything went well:
-msg <- ifelse(length(x)>0,
-              "==> stiagent R library seems to work.",
-              "THERE IS A PROBLEM WITH stiagent LIBRARY")
-message(paste0(rep("=",40)))
-message(msg)

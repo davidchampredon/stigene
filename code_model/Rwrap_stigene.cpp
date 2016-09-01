@@ -239,6 +239,23 @@ List stiagent_runsim(List params) {
 	seccases_sti.attr("names") = stiname_str;
 
 	
+	// Time STI acquisition
+	
+	Rcpp::List acq_sti;
+	for(int s=0; s<nSTI;s++){
+		STIname stiname = POP.get_STI()[s].get_name();
+		vector<string> uidvec;
+		Rcpp::List acq_sti_indiv;
+		for(unsigned long i=0; i < POP.get_size(); i++){
+			vector<double> acqtimes = POP.get_individual(i).get_time_STI_acquisition()[s];
+			acq_sti_indiv.push_back(acqtimes);
+			uidvec.push_back(to_string(POP.get_individual(i).get_UID()));
+		}
+		acq_sti_indiv.attr("names") = uidvec;
+		acq_sti.push_back(acq_sti_indiv);
+	}
+	acq_sti.attr("names") = stiname_str;
+	
 	
 	// =========================================================================
 	// =========================================================================
@@ -256,7 +273,8 @@ List stiagent_runsim(List params) {
 						Named("seed") = MC_id,
 						Named("genomes") = genomes,
 						Named("genomes_UID") = genomes_UID,
-						Named("sec_cases") = seccases_sti
+						Named("sec_cases") = seccases_sti,
+						Named("acquisition_times") = acq_sti
 						);
 }
 

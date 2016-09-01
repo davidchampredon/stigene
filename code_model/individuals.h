@@ -110,6 +110,8 @@ class Individual
 	// == Diseases ==
 	
 	vector<STI>		_STI;					// STI modelled - Copy of template from Population
+    
+    vector< vector<double> >  _time_STI_acquisition;  // Times when this individual acquires STI
 	
 	vector<double>	_RebHIV;				// Rebound of HIV infectivity - Copy of template from Population
 	
@@ -227,6 +229,8 @@ public:
 	
 	vector<STI>			get_STI() {return _STI;}
 	
+    vector<vector<double> >      get_time_STI_acquisition() {return _time_STI_acquisition;}
+    
 	vector<double>		get_STIduration() {return _STIduration;}
 	double				get_STIduration(STIname stiname);
 	
@@ -325,7 +329,7 @@ public:
 	void		set_UID_n_sexAct_Type_period(vector<unsigned int> nSexType);
 	
 	void		set_riskGroup(int r) {_riskGroup=r;}
-	
+    
 	void		init_STIsusceptFactor();
 	void		set_STIsusceptFactor(int i, double x) {_STIsusceptFactor[i]=x;}
 	
@@ -393,6 +397,8 @@ public:
 	void			STI_initializeAll(vector<STI> templateSTI);		// Initialize all STI when this individual is "constructed"
 	
 	void			STI_resetAllDurations();						// Reset all STI durations to 0
+    
+    void            add_time_STI_acquisition(double t, STIname stiname);
 	
 	void			set_STIsymptom(STIname stiname, bool isSymptomatic);
 	
